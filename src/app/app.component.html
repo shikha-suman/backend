@@ -1,0 +1,84 @@
+<!DOCTYPE <!DOCTYPE html>
+<html lang="en">
+   <div class="container">
+    <h2>User data</h2>
+    <form #userForm = "ngForm" (ngSubmit)= "ngSubmit(userForm.value)">
+        <div class="form-group">
+            <label>name</label>
+            <input type="text" name="user_name" #nameRef="ngModel" minlength="4" required class="form-control" [(ngModel)]="myName">
+            <!--{{nameRef.className}}-->
+            <div *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)" class="alert alert-danger">
+                <div [hidden]="!nameRef.errors.required">
+                    please enter username 
+                </div>
+                <div [hidden]="!nameRef.errors.minlength">
+                    enter 4 character atleast
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="user_phone" #phoneRef="ngModel" required class="form-control" ngModel>
+            <div [hidden]="phoneRef.valid || phoneRef.untouched" class="alert alert-danger">
+                please enter a phone
+            </div>
+        </div>
+
+    <div ngModelGroup="user_group">
+        <div class="form-group">
+            <label>email</label>
+            <input type="email" name="user_email" name="user_phone" #emailRef="ngModel" required class="form-control" ngModel>
+            <div [hidden]="emailRef.valid || emailRef.untouched" class="alert alert-danger">
+                please enter a email
+            </div>
+        </div>     
+        <div class="form-group">
+            <label>age</label>
+            <input type="number" name="user_age" class="form-control" id="age" ngModel>
+        </div>
+    </div>
+
+                
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+    </form>
+</div>
+
+<!--<div class="container">
+    <h2>User data</h2>
+    <form [formGroup]="userForm" (onSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>name</label>
+            <input type="text"  class="form-control" formControlName="name" >
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+        </div>
+
+
+        <div formGroupName="address">
+            <div class="form-group">
+                <label>email</label>
+                <input type="text" class="form-control" formControlName="street">
+            </div>     
+
+            <div class="form-group">
+                <label>age</label>
+                <input type="text" class="form-control" formControlName="city">
+            </div>
+
+        </div>
+
+                
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+-->
+
+
+
+</html>
+
+
